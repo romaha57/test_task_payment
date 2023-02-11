@@ -1,0 +1,31 @@
+{% extends 'app_payment/base.html' %}
+{% load humanize %}
+
+{% block title %}
+Заказ - {{ request.user.username }}
+{% endblock %}
+
+
+{% block content %}
+<div class="container text-center">
+    <ol class="list-group list-group-numbered">
+      {% for order in orders %}
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{ order.products.name }}</div>
+      {{ order.products.description }}
+    </div>
+    <span class="badge bg-primary rounded-pill">Цена: {{ order.products.price }} руб.</span>
+    <span class="badge bg-primary rounded-pill">{{ order.quantity }} шт.</span>
+    <span class="badge bg-primary rounded-pill">Всего: {{ order.total_sum }} руб.</span>
+  </li>
+      {% endfor %}
+</ol>
+  <br>
+  <p>Общая стоимость: {{ total_price|intcomma }} руб.</p>
+
+    <form action="{% url 'app_payment:buy-order' request.user.username %}">
+     <button type="submit" class="btn btn-primary">Купить</button>
+        </form>
+</div>
+{% endblock %}
