@@ -16,5 +16,7 @@ RUN pip install -r requirements.txt
 COPY . /code/
 
 EXPOSE 8000
-
+CMD ["python", "manage.py", "loaddata", "user.json"]
+CMD ["python", "manage.py", "loaddata", "item.json"]
+CMD ["python", "manage.py", "loaddata", "order.json"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
