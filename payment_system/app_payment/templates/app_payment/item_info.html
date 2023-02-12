@@ -1,4 +1,6 @@
 {% extends 'app_payment/base.html' %}
+{% load humanize %}
+
 
 {% block title %}
 Товар - {{ item.name }}
@@ -6,10 +8,15 @@
 
 {% block content %}
 <div class="container text-center">
-    <h1>{{ item.name }}</h1>
-    <p>{{ item.description }}</p>
-    <p>{{ item.price }}</p>
+    <h1>Название: {{ item.name }}</h1>
+    <p>Описание: {{ item.description }}</p>
+    <hr>
+    <p>Стоимость: {{ item.price|intcomma }} руб.</p>
 
+    {% if price_with_discount %}
+    <p>Ваша скидка: {{ item.discount.value|intcomma }} %</p>
+    <p>Итоговая стоимость: {{ price_with_discount|intcomma }} руб.</p>
+    {% endif %}
     <form action="{% url 'app_payment:buy-item' item.pk %}">
         <input type="text" value="{{ item.id }}" hidden>
     <button type="submit" class="btn btn-primary">Купить</button>

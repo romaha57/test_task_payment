@@ -14,7 +14,6 @@ from pathlib import Path
 
 import environ
 
-
 # load env
 env = environ.Env(
     DEBUG=(bool),
@@ -140,5 +139,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Stripe payment system data
 STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')

@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import ItemDetailView, OrderDetailView, SuccessBuyView, CancelBuyView, BuyItemView, BuyOrderView
+from .views import (BuyItemView, BuyOrderView, CancelBuyView, ItemDetailView,
+                    OrderDetailView, SuccessBuyView)
 
 app_name = 'app_payment'
 

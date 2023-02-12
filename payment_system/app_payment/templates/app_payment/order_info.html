@@ -22,7 +22,12 @@
       {% endfor %}
 </ol>
   <br>
-  <p>Общая стоимость: {{ total_price|intcomma }} руб.</p>
+    <p>Стоимость: {{ total_price|intcomma }} руб.</p>
+
+    {% if discount %}
+    <p>Ваша скидка: {{ discount|intcomma }} %</p>
+    <p>Итоговая стоимость: {{ total_price_with_discount|intcomma }} руб.</p>
+    {% endif %}
 
     <form action="{% url 'app_payment:buy-order' request.user.username %}">
      <button type="submit" class="btn btn-primary">Купить</button>
